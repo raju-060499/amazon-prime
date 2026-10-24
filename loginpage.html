@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Video — Sign In Demo</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #071b2b, #0b2438 55%, #123b50);
+      color: #fff; display: flex; flex-direction: column;
+    }
+    header { padding: 25px 7%; display: flex; align-items: center; }
+    .logo { font-size: 28px; font-weight: 700; letter-spacing: -.8px; }
+    .logo span { color: #00a8e1; }
+    main { flex: 1; display: grid; place-items: center; padding: 28px 18px 55px; }
+    .card {
+      width: min(100%, 390px); background: #fff; color: #111;
+      border-radius: 7px; padding: 30px 32px 26px;
+      box-shadow: 0 16px 45px rgba(0,0,0,.3);
+    }
+    h1 { margin: 0 0 22px; font-size: 28px; font-weight: 500; }
+    label { display: block; font-size: 14px; font-weight: 700; margin: 14px 0 6px; }
+    input {
+      width: 100%; padding: 11px 12px; border: 1px solid #888c8c;
+      border-radius: 3px; font-size: 15px; outline: none;
+    }
+    input:focus { border-color: #007185; box-shadow: 0 0 0 3px #c8f3fa; }
+    button {
+      width: 100%; margin-top: 20px; padding: 11px; border: 1px solid #f0c14b;
+      border-radius: 4px; background: #ffd814; color: #111; font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover { background: #f7ca00; }
+    .terms { margin: 18px 0 0; font-size: 12px; line-height: 1.55; color: #333; }
+    .help { display: inline-block; margin-top: 19px; color: #007185; font-size: 14px; text-decoration: none; }
+    .divider { display: flex; align-items: center; gap: 12px; color: #666; font-size: 12px; margin: 25px 0 0; }
+    .divider::before, .divider::after { content: ""; height: 1px; background: #ddd; flex: 1; }
+    .create { background: #f7f8f8; border: 1px solid #adb1b8; margin-top: 14px; }
+    .create:hover { background: #e9eeee; }
+    footer { text-align: center; padding: 20px 12px 28px; color: #b7c7d2; font-size: 12px; }
+    footer a { color: #b7d9e8; text-decoration: none; margin: 0 9px; }
+    .notice { display: none; margin-top: 14px; padding: 10px; border-radius: 4px; background: #e8f7fb; color: #075568; font-size: 13px; line-height: 1.4; }
+    @media (max-width: 480px) {
+      header { justify-content: center; padding: 22px 10px; }
+      .card { padding: 26px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header><div class="logo">prime<span> video</span></div></header>
+  <main>
+    <section class="card" aria-label="Demo sign in form">
+      <h1>Sign in</h1>
+      <form id="loginForm">
+        <label for="email">Email or mobile phone number</label>
+        <input id="email" name="email" type="text" placeholder="Enter email or mobile number" autocomplete="username" required />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Enter password" autocomplete="current-password" required />
+        <button type="submit">Sign in</button>
+      </form>
+      <div id="notice" class="notice" role="status"></div>
+      <p class="terms">By continuing, you agree to the Prime Video demo's Terms of Use and Privacy Notice.</p>
+      <a class="help" href="#" id="helpLink">ⓘ  Need help?</a>
+      <div class="divider">New to Prime Video?</div>
+      <button class="create" id="createBtn" type="button">Create your Amazon account</button>
+    </section>
+  </main>
+  <footer>
+    <div><a href="#">Terms and Privacy Notice</a><a href="#">Send us feedback</a><a href="#">Help</a></div>
+    <p>Demo page for HTML/CSS practice — not an official Amazon page.</p>
+  </footer>
+  <script>
+    const notice = document.getElementById('notice');
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      notice.style.display = 'block';
+      notice.textContent = 'This is a front-end demo only. No sign-in details were sent or saved.';
+      document.getElementById('password').value = '';
+    });
+    document.getElementById('helpLink').addEventListener('click', function (event) {
+      event.preventDefault();
+      notice.style.display = 'block';
+      notice.textContent = 'Demo help: check your email/mobile number and try again. This page does not connect to Amazon.';
+    });
+    document.getElementById('createBtn').addEventListener('click', function () {
+      notice.style.display = 'block';
+      notice.textContent = 'Account creation is not connected in this practice demo.';
+    });
+  </script>
+</body>
+</html>
